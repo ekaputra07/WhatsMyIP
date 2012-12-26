@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -13,15 +14,27 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
+import javax.swing.JButton;
 
 public class WhatsMyIp extends JFrame {
-
+	{
+		try{
+			UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+		}catch(Exception e){}
+	}
+	
 	private JPanel contentPane;
 	private JLabel status;
 	private JLabel myIP;
 	private URL url;
 	private final String server = "http://automation.whatismyip.com/n09230945.asp";
 	private String current_ip;
+	private JMenu mnFile;
+	private JMenuItem mntmExit;
+	private JMenuItem mntmPreferences;
 
 	/**
 	 * Launch the application.
@@ -50,6 +63,18 @@ public class WhatsMyIp extends JFrame {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 180);
+		
+		JMenuBar menuBar = new JMenuBar();
+		setJMenuBar(menuBar);
+		
+		mnFile = new JMenu("File");
+		menuBar.add(mnFile);
+		
+		mntmExit = new JMenuItem("Exit");
+		mnFile.add(mntmExit);
+		
+		mntmPreferences = new JMenuItem("Preferences");
+		mnFile.add(mntmPreferences);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -57,17 +82,17 @@ public class WhatsMyIp extends JFrame {
 		
 		JLabel lblMyExternalIp = new JLabel("My external IP Address is:");
 		lblMyExternalIp.setFont(new Font("Dialog", Font.BOLD, 18));
-		lblMyExternalIp.setBounds(87, 33, 324, 27);
+		lblMyExternalIp.setBounds(81, 12, 324, 27);
 		contentPane.add(lblMyExternalIp);
 		
 		myIP = new JLabel("000.000.000.000");
 		myIP.setFont(new Font("Dialog", Font.PLAIN, 40));
-		myIP.setBounds(52, 60, 350, 48);
+		myIP.setBounds(54, 36, 350, 48);
 		contentPane.add(myIP);
 		
 		status = new JLabel();
 		status.setFont(new Font("Dialog", Font.PLAIN, 12));
-		status.setBounds(12, 124, 420, 15);
+		status.setBounds(12, 103, 420, 15);
 		status.setText("Fetching data from http://whatismyip.com...");
 		contentPane.add(status);
 	}
