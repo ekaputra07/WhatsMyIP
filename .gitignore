@@ -1,6 +1,5 @@
 *.class
 bin
-.settings
 
 # Package Files #
 *.jar
