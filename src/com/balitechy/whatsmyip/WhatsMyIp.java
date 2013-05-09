@@ -18,23 +18,18 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
-public class WhatsMyIp extends JFrame {
-	{
-		try{
-			UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
-		}catch(Exception e){}
-	}
-	
+public class WhatsMyIp extends JFrame {	
 	private JPanel contentPane;
 	private JLabel status;
 	private JLabel myIP;
 	private URL url;
-	private final String server = "http://automation.whatismyip.com/n09230945.asp";
+	private final String server = "http://miptracker-app.appspot.com/plain";
 	private String current_ip;
 	private JMenu mnFile;
 	private JMenuItem mntmExit;
-	private JMenuItem mntmPreferences;
 
 	/**
 	 * Launch the application.
@@ -59,7 +54,7 @@ public class WhatsMyIp extends JFrame {
 	 * Create the frame.
 	 */
 	public WhatsMyIp() {
-		super("Whats My IP");
+		super("whatsmyip");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 180);
@@ -71,10 +66,12 @@ public class WhatsMyIp extends JFrame {
 		menuBar.add(mnFile);
 		
 		mntmExit = new JMenuItem("Exit");
+		mntmExit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				System.exit(0);
+			}
+		});
 		mnFile.add(mntmExit);
-		
-		mntmPreferences = new JMenuItem("Preferences");
-		mnFile.add(mntmPreferences);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -93,7 +90,7 @@ public class WhatsMyIp extends JFrame {
 		status = new JLabel();
 		status.setFont(new Font("Dialog", Font.PLAIN, 12));
 		status.setBounds(12, 103, 420, 15);
-		status.setText("Fetching data from http://whatismyip.com...");
+		status.setText("Fetching data from http://miptracker-app.appspot.com...");
 		contentPane.add(status);
 	}
 	
@@ -106,7 +103,7 @@ public class WhatsMyIp extends JFrame {
 					try {
 						url = new URL(server);
 						URLConnection hc = url.openConnection();
-						hc.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:12.0) Gecko/20100101 Firefox/12.0");
+						hc.setRequestProperty("User-Agent", "WhatsMyIp Desktop - JavaSE 1.6");
 						
 						is = new InputStreamReader(hc.getInputStream());
 						BufferedReader bf = new BufferedReader(is);
