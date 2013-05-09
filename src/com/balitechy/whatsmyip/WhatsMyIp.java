@@ -18,6 +18,8 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class WhatsMyIp extends JFrame {
 	{
@@ -34,7 +36,6 @@ public class WhatsMyIp extends JFrame {
 	private String current_ip;
 	private JMenu mnFile;
 	private JMenuItem mntmExit;
-	private JMenuItem mntmPreferences;
 
 	/**
 	 * Launch the application.
@@ -71,10 +72,12 @@ public class WhatsMyIp extends JFrame {
 		menuBar.add(mnFile);
 		
 		mntmExit = new JMenuItem("Exit");
+		mntmExit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				System.exit(0);
+			}
+		});
 		mnFile.add(mntmExit);
-		
-		mntmPreferences = new JMenuItem("Preferences");
-		mnFile.add(mntmPreferences);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
