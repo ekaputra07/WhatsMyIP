@@ -1,27 +1,26 @@
-package com.balitechy.whatsmyip;
+package com.balitechy.miptracker;
 
 import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
-import javax.swing.UIManager;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
-import javax.swing.JMenuBar;
-import javax.swing.JMenu;
-import javax.swing.JMenuItem;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
-public class WhatsMyIp extends JFrame {	
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
+import javax.swing.border.EmptyBorder;
+
+public class MipTracker extends JFrame {
+	
 	private JPanel contentPane;
 	private JLabel status;
 	private JLabel myIP;
@@ -31,14 +30,11 @@ public class WhatsMyIp extends JFrame {
 	private JMenu mnFile;
 	private JMenuItem mntmExit;
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					WhatsMyIp frame = new WhatsMyIp();
+					MipTracker frame = new MipTracker();
 					frame.setLocationRelativeTo(null);
 					frame.setVisible(true);
 					Thread.sleep(500);
@@ -50,11 +46,8 @@ public class WhatsMyIp extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
-	public WhatsMyIp() {
-		super("whatsmyip");
+	MipTracker() {
+		super("Miptracker");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 180);
@@ -103,7 +96,7 @@ public class WhatsMyIp extends JFrame {
 					try {
 						url = new URL(server);
 						URLConnection hc = url.openConnection();
-						hc.setRequestProperty("User-Agent", "WhatsMyIp Desktop - JavaSE 1.6");
+						hc.setRequestProperty("User-Agent", "Miptracker Desktop - JavaSE 1.6");
 						
 						is = new InputStreamReader(hc.getInputStream());
 						BufferedReader bf = new BufferedReader(is);
